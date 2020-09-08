@@ -1,3 +1,14 @@
-<ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-alpine" [rowData]="rowData"
-  [columnDefs]="columnDefs">
+<div class="myTitleWrapper">
+  <div class="myTitle">Total Holiday Days: {{ holidaysTotal }}</div>
+
+  <div class="myTitle">
+    Remaining Holiday Days: {{ holidaysTotal - holidaysCompleted }}
+  </div>
+
+  <div class="myTitle">Holidays Completed: {{ holidaysCompleted }}</div>
+</div>
+
+<ag-grid-angular style="width: 100%; height: 100%" class="ag-theme-alpine" [gridOptions]="gridOptions"
+  [columnDefs]="columnDefs" [rowData]="rowData" [groupIncludeTotalFooter]="true"
+  (firstDataRendered)="onFirstDataRendered($event)" (gridReady)="onGridReady($event)">
 </ag-grid-angular>

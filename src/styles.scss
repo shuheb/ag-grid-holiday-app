@@ -4,3 +4,41 @@
 .ag-theme-alpine {
   @include ag-theme-alpine();
 }
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+#actionContainer {
+  margin: auto;
+  width: 90%;
+}
+
+.action-margin {
+  margin: 0 10px;
+}
+
+.status-approved {
+  color: #ff9800 !important;
+  font-weight: bold;
+}
+.status-pending {
+  color: #f44336 !important;
+  font-weight: bold;
+}
+.status-completed {
+  color: #4caf50 !important;
+  font-weight: bold;
+}
+
+.myTitleWrapper {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.myTitle {
+  margin: 10px;
+}
