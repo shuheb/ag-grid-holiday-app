@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ICellEditorAngularComp } from 'ag-grid-angular';
+import { AgEditorComponent } from 'ag-grid-angular';
 
 @Component({
   selector: 'app-picker-cell-editor',
@@ -19,7 +19,7 @@ import { ICellEditorAngularComp } from 'ag-grid-angular';
   styles: [``],
 })
 export class PrimeCellEditorComponent
-  implements ICellEditorAngularComp, AfterViewInit {
+  implements AgEditorComponent, AfterViewInit {
   params: any;
   value: Date;
 
@@ -29,31 +29,29 @@ export class PrimeCellEditorComponent
     this.params = params;
 
     if (this.params.value) {
-      let dateArray = this.params.value.split('/');
+      const dateArray = this.params.value.split('/');
 
-      let day = parseInt(dateArray[0]);
-      let month = parseInt(dateArray[1]);
-      let year = parseInt(dateArray[2]);
+      const day = parseInt(dateArray[0]);
+      const month = parseInt(dateArray[1]);
+      const year = parseInt(dateArray[2]);
 
       this.value = new Date(year, month - 1, day);
     }
   }
 
+  // open the calendar when grid enters edit mode, i.e. the datepicker is rendered
   ngAfterViewInit() {
     this.container.toggle();
   }
 
+  // ensures that once a date is selected, the grid will exit edit mode and take the new date
+  // otherwise, to exit edit mode after a selecting a date, click on another cell or press enter
   onSelect(event) {
     this.params.api.stopEditing(false);
   }
 
   getValue() {
-    let d = this.value;
+    const d = this.value;
     return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
-  }
-
-  refresh(params: any): boolean {
-    this.params = params;
-    return true;
   }
 }
